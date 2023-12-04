@@ -1,6 +1,6 @@
 import { prismaConnection } from "../../connect";
 import { publicProcedure, router } from "../trpc";
 
-export const GetAuthors = publicProcedure.query(() =>
+export const getAuthors = publicProcedure.query(() =>
   prismaConnection.author.findMany()
 );

@@ -1,6 +1,6 @@
 import { router } from "../trpc";
-import { GetAuthors } from "./getAuthors";
+import { getAuthors } from "./getAuthors";
 
-export const RouterAuthor = router({
-  list: GetAuthors,
+export const routerAuthor = router({
+  list: getAuthors,
 });
