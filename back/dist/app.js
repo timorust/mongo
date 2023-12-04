@@ -28,10 +28,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const insertData_1 = require("./insertData");
 const trpc_1 = require("./trpc");
 const trpcExpress = __importStar(require("@trpc/server/adapters/express"));
-(0, insertData_1.generateData)();
+// import { generateData } from "./insertData";
+// generateData();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
