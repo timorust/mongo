@@ -11,12 +11,6 @@ export function AuthorPage() {
         <div>
           {authorQuery.data?.map((author, index) => (
             <div key={index}>
-              {/* <p>{author.id}</p>
-              <hr />
-              <p>{author.bio}</p>
-              <hr />
-              <p>{author.name}</p>
-              <hr /> */}
               {JSON.stringify(author, null, 4)}
               <hr />
             </div>

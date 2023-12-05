@@ -5,7 +5,6 @@ import { trpc } from "./trpc";
 // import { Example } from "./components/exa";
 import { BrowserRouter } from "react-router-dom";
 import { RouterComponent } from "./routers";
-import { HomePage } from "./routers/HomePage/homePage";
 
 export function App() {
   const [queryClient] = useState(() => new QueryClient());
