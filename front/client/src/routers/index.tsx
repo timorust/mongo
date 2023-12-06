@@ -3,6 +3,8 @@ import { HomePage } from "./HomePage/HomePage";
 import { PostPage } from "./PostPage/PostPage";
 import { AuthorPage } from "./AuthorPage/AuthorPage";
 import { AuthorDetailsPage } from "./AuthorPage/AuthorDetailsPage/AuthorDetailsPage";
+import { BooksPage } from "./BooksPage/BooksPage";
+import { BookDetailsPage } from "./BooksPage/BookDetailsPage/BookDetailsPage";
 
 export function RouterComponent() {
   return (
@@ -12,6 +14,8 @@ export function RouterComponent() {
         <Route path="/post" element={<PostPage />} />
         <Route path="/author" element={<AuthorPage />} />
         <Route path="/author/:id" element={<AuthorDetailsPage />} />
+        <Route path="/books" element={<BooksPage />} />
+        <Route path="/books/:id" element={<BookDetailsPage />} />
       </Routes>
     </>
   );

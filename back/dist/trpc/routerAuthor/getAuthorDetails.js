@@ -18,16 +18,16 @@ exports.getAuthorDetails = trpc_1.publicProcedure
     .query((opts) => __awaiter(void 0, void 0, void 0, function* () {
     const id = opts.input;
     const [books, authorDetails] = yield Promise.all([
-        connect_1.prismaConnection.author.findFirst({
-            where: {
-                id,
-            },
-        }),
         connect_1.prismaConnection.book.findMany({
             where: {
                 authorId: id,
             },
         }),
+        connect_1.prismaConnection.author.findFirst({
+            where: {
+                id,
+            },
+        }),
     ]);
-    return { authorDetails, books };
+    return { books, authorDetails };
 }));

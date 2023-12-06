@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { trpc } from "../../trpc";
 
 export function AuthorPage() {
@@ -11,7 +12,11 @@ export function AuthorPage() {
         <div>
           {authorQuery.data?.map((author, index) => (
             <div key={index}>
-              {JSON.stringify(author, null, 4)}
+              <strong>id: --- {author.id}</strong>
+              <h2>
+                <NavLink to={`/author/${author.id}`}>{author.name}</NavLink>
+              </h2>
+              <p>{author.bio}</p>
               <hr />
             </div>
           ))}

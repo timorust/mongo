@@ -8,16 +8,16 @@ export const getAuthorDetails = publicProcedure
     const id = opts.input;
 
     const [books, authorDetails] = await Promise.all([
-      prismaConnection.author.findFirst({
-        where: {
-          id,
-        },
-      }),
       prismaConnection.book.findMany({
         where: {
           authorId: id,
         },
       }),
+      prismaConnection.author.findFirst({
+        where: {
+          id,
+        },
+      }),
     ]);
-    return { authorDetails, books };
+    return { books, authorDetails };
   });
