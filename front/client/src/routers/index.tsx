@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./HomePage/HomePage";
 import { PostPage } from "./PostPage/PostPage";
 import { AuthorPage } from "./AuthorPage/AuthorPage";
-import { AuthorDetailsId } from "./AuthorPage/AuthorDetailsPage/AuthorDetailsId";
+import { AuthorDetailsPage } from "./AuthorPage/AuthorDetailsPage/AuthorDetailsPage";
 
 export function RouterComponent() {
   return (
@@ -11,7 +11,7 @@ export function RouterComponent() {
         <Route path="/" element={<HomePage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/author" element={<AuthorPage />} />
-        <Route path="/author/:id" element={<AuthorDetailsId />} />
+        <Route path="/author/:id" element={<AuthorDetailsPage />} />
       </Routes>
     </>
   );
