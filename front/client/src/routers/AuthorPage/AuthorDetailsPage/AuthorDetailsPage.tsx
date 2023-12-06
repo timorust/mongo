@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { trpc } from "../../../trpc";
 
 export function AuthorDetailsPage() {
@@ -32,7 +32,7 @@ export function AuthorDetailsPage() {
         <div>
           {author_details_query.data.books.map((book, index) => (
             <div key={index}>
-              <h2>Title--- {book.title}</h2>
+              <NavLink to={`/books/${book.id}`}>{book.title}</NavLink>
               <p>Context--- {book.description}</p>
               <span>Author-- {book.authorId}</span>
               <p>time: {book.publishedAt}</p>
