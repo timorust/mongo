@@ -17,15 +17,17 @@ exports.getAuthorDetails = trpc_1.publicProcedure
     .input(zod_1.z.string())
     .query((opts) => __awaiter(void 0, void 0, void 0, function* () {
     const id = opts.input;
-    const authorDetails = yield connect_1.prismaConnection.author.findFirst({
-        where: {
-            id,
-        },
-    });
-    const books = yield connect_1.prismaConnection.book.findMany({
-        where: {
-            authorId: id,
-        },
-    });
+    const [books, authorDetails] = yield Promise.all([
+        connect_1.prismaConnection.author.findFirst({
+            where: {
+                id,
+            },
+        }),
+        connect_1.prismaConnection.book.findMany({
+            where: {
+                authorId: id,
+            },
+        }),
+    ]);
     return { authorDetails, books };
 }));
