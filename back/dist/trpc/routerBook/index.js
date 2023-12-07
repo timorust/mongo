@@ -23,4 +23,8 @@ exports.routerBook = (0, trpc_2.router)({
         });
         return bookDetails;
     })),
+    bookList: trpc_1.publicProcedure.query(() => __awaiter(void 0, void 0, void 0, function* () {
+        const bookList = yield connect_1.prismaConnection.book.findMany();
+        return bookList;
+    })),
 });

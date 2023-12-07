@@ -12,4 +12,9 @@ export const routerBook = router({
     });
     return bookDetails;
   }),
+
+  bookList: publicProcedure.query(async () => {
+    const bookList = await prismaConnection.book.findMany();
+    return bookList;
+  }),
 });
