@@ -8,6 +8,7 @@ interface IBooks {
   authorId: string;
 }
 export function BooksPage() {
+  const author_details_query = trpc.author.list.useQuery();
   const book_list_query = trpc.book.bookList.useQuery();
   const add_mutation_book = trpc.book.createBook.useMutation({
     onSuccess: () => {
@@ -34,11 +35,18 @@ export function BooksPage() {
           {...register("description")}
           placeholder="enter description please..."
         />
-        <input
+        {/* <input
           type="text"
           {...register("authorId")}
           placeholder="enter authorId please..."
-        />
+        /> */}
+        <select {...register("authorId")}>
+          {author_details_query.data?.map((author, index) => (
+            <option key={index} value={author.id}>
+              {author.name}
+            </option>
+          ))}
+        </select>
         <button type="submit">send data</button>
       </form>
       {book_list_query.data.map((book, index) => (

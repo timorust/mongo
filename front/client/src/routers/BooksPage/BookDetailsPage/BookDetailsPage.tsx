@@ -13,9 +13,11 @@ export function BookDetailsPage() {
   return (
     <main>
       <h1>Book details page -- {id}</h1>
-      <h2>{book_details_query.data?.title}</h2>
-      <p>{book_details_query.data?.description}</p>
-      <p>{book_details_query.data?.publishedAt}</p>
+      <h2>{book_details_query.data?.title}--------------title</h2>
+      <p>{book_details_query.data?.description}----------------desc</p>
+      <p>
+        {book_details_query.data?.publishedAt}-----------------------------time
+      </p>
     </main>
   );
 }
