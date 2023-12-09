@@ -27,4 +27,16 @@ exports.routerBook = (0, trpc_2.router)({
         const bookList = yield connect_1.prismaConnection.book.findMany();
         return bookList;
     })),
+    createBook: trpc_1.publicProcedure
+        .input(zod_1.z.object({
+        title: zod_1.z.string(),
+        description: zod_1.z.string(),
+        authorId: zod_1.z.string(),
+    }))
+        .mutation((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        const newBook = yield connect_1.prismaConnection.book.create({
+            data: opts.input,
+        });
+        return newBook;
+    })),
 });

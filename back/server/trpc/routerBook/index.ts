@@ -1,7 +1,7 @@
 import { prismaConnection } from "../../connect";
 import { publicProcedure } from "../trpc";
 import { router } from "../trpc";
-import { z } from "zod";
+import { string, z } from "zod";
 
 export const routerBook = router({
   bookDetails: publicProcedure.input(z.string()).query(async (opts) => {
@@ -17,4 +17,19 @@ export const routerBook = router({
     const bookList = await prismaConnection.book.findMany();
     return bookList;
   }),
+
+  createBook: publicProcedure
+    .input(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        authorId: z.string(),
+      })
+    )
+    .mutation(async (opts) => {
+      const newBook = await prismaConnection.book.create({
+        data: opts.input,
+      });
+      return newBook;
+    }),
 });

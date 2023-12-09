@@ -12,6 +12,7 @@ export function AuthorDetailsPage() {
         <p>Error no id was provider!</p>
       </main>
     );
+
   if (author_details_query.isLoading) return <main>Loading..</main>;
   if (
     author_details_query.data === undefined ||
