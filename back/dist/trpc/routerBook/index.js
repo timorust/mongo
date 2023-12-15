@@ -39,4 +39,24 @@ exports.routerBook = (0, trpc_2.router)({
         });
         return newBook;
     })),
+    bookEdit: trpc_1.publicProcedure
+        .input(zod_1.z.object({
+        id: zod_1.z.string(),
+        title: zod_1.z.string(),
+        authorId: zod_1.z.string(),
+        description: zod_1.z.string(),
+    }))
+        .mutation((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        const bookUpdate = yield connect_1.prismaConnection.book.update({
+            data: {
+                title: opts.input.title,
+                description: opts.input.description,
+                authorId: opts.input.authorId,
+            },
+            where: {
+                id: opts.input.id,
+            },
+        });
+        return bookUpdate;
+    })),
 });

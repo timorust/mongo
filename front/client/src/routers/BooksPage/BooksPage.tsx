@@ -6,6 +6,7 @@ interface IBooks {
   title: string;
   description: string;
   authorId: string;
+  publishedAt: string;
 }
 export function BooksPage() {
   const author_details_query = trpc.author.list.useQuery();
