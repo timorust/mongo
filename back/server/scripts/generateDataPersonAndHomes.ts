@@ -2,13 +2,21 @@ import { faker } from "@faker-js/faker";
 import { prismaConnection } from "../connect";
 
 export async function generateDataPersonAndHomes(interCount: number = 10) {
+  const minAge = 20;
   for (let i = 0; i < interCount; i++) {
-    prismaConnection.home.create({
+    const newPerson = await prismaConnection.person.create({
       data: {
-        address: "",
-        city: "",
+        name: faker.person.firstName(),
+        bio: faker.person.bio(),
+        age: minAge + i,
+      },
+    });
+    await prismaConnection.home.create({
+      data: {
+        address: faker.person.jobType() + " " + (i + 5),
+        city: faker.person.jobArea(),
         rooms: 5,
-        personId: "",
+        personId: newPerson.id,
       },
     });
   }

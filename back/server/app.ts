@@ -3,6 +3,8 @@ import cors from "cors";
 
 import { appRouter } from "./trpc";
 import * as trpcExpress from "@trpc/server/adapters/express";
+import { generateDataPersonAndHomes } from "./scripts/generateDataPersonAndHomes";
+generateDataPersonAndHomes();
 // import { generateData } from "./insertData";
 // generateData();
 
