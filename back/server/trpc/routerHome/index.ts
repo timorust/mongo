@@ -14,6 +14,6 @@ export const routerHome = router({
         id: opts.input,
       },
     });
-    return home;
+    return home ?? undefined;
   }),
 });

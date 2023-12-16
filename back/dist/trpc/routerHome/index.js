@@ -24,6 +24,6 @@ exports.routerHome = (0, trpc_1.router)({
                 id: opts.input,
             },
         });
-        return home;
+        return home !== null && home !== void 0 ? home : undefined;
     })),
 });
