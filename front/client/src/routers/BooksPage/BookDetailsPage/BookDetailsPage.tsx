@@ -69,7 +69,7 @@ export function BookDetailsPage() {
               </option>
             ))}
           </select>
-          <button type="submit">update data</button>
+          <button type="submit">update book</button>
         </form>
       </Dialog>
       <button

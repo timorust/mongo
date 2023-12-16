@@ -48,7 +48,7 @@ export function BooksPage() {
             </option>
           ))}
         </select>
-        <button type="submit">send data</button>
+        <button type="submit">add book</button>
       </form>
       {book_list_query.data.map((book, index) => (
         <div key={index}>

@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 
 const prisma = new PrismaClient();
 
-export async function generateData() {
+export async function generateDataBookAndAuthors() {
   // Insert Dummy Authors
   const author1 = await prisma.author.create({
     data: {

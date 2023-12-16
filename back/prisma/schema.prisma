@@ -32,4 +32,21 @@ model Book {
   authorId    String @db.ObjectId   // Foreign key to relate the book to an author
   author      Author   @relation(fields: [authorId], references: [id]) // Defines the relationship
 }
+
+model Home {
+	id String @id @default(auto()) @map("_id") @db.ObjectId
+	address String
+	city String
+	rooms Int
+	personId String @db.ObjectId
+	person Person @relation(fields: [personId], references: [id]) // Defines the relationship
+}
+
+model Person {
+	id String @id @default(auto()) @map("_id") @db.ObjectId
+	name String
+	bio String?
+	age Int
+	homes Home[]
+}
 // npx prisma db push
