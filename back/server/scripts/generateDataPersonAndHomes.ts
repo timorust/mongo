@@ -8,6 +8,7 @@ export async function generateDataPersonAndHomes(interCount: number = 10) {
         address: "",
         city: "",
         rooms: 5,
+        personId: "",
       },
     });
   }
