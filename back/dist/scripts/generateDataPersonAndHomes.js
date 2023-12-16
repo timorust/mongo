@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateDataPersonAndHomes = void 0;
 const faker_1 = require("@faker-js/faker");
 const connect_1 = require("../connect");
-function generateDataPersonAndHomes(interCount = 10) {
+function generateDataPersonAndHomes(interCount = 1) {
     return __awaiter(this, void 0, void 0, function* () {
         const minAge = 20;
         for (let i = 0; i < interCount; i++) {
