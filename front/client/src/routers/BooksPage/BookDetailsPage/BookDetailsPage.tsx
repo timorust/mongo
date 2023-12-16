@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { trpc } from "../../../trpc";
 import { Dialog } from "@mui/material";
 // import { useSignal } from "@preact/signals-react/runtime";
@@ -25,7 +25,7 @@ export function BookDetailsPage() {
   });
 
   const [openDialog, setOpenDialog] = useState(false);
-  const { register, handleSubmit } = useForm<IBookDetails>({
+  const { register, handleSubmit, reset } = useForm<IBookDetails>({
     defaultValues: {
       ...book_details_query.data,
       description: book_details_query.data?.description ?? "",
@@ -40,6 +40,9 @@ export function BookDetailsPage() {
       <h1>{book_details_query.data?.title}</h1>
       <p>{book_details_query.data?.description}</p>
       <h5>{book_details_query.data?.publishedAt}</h5>
+      <NavLink to={`/author/${book_details_query.data?.authorId}`}>
+        {book_details_query.data?.title}
+      </NavLink>
 
       <Dialog open={openDialog}>
         <button onClick={() => setOpenDialog(false)}>close</button>
@@ -72,6 +75,10 @@ export function BookDetailsPage() {
       <button
         onClick={() => {
           setOpenDialog(true);
+          reset({
+            ...book_details_query.data,
+            description: book_details_query.data?.description ?? "",
+          });
         }}
       >
         edit
