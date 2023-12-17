@@ -21,15 +21,33 @@ function generateDataPersonAndHomes(interCount = 1) {
                     name: faker_1.faker.person.firstName(),
                     bio: faker_1.faker.person.bio(),
                     age: minAge + i,
+                    homes: [],
                 },
             });
-            yield connect_1.prismaConnection.home.create({
+            const newHome = yield connect_1.prismaConnection.home.create({
                 data: {
                     address: faker_1.faker.person.jobType() + " " + (i + 5),
                     city: faker_1.faker.person.jobArea(),
                     rooms: 5,
-                    personId: newPerson.id,
+                    persons: [
+                        {
+                            id: newPerson.id,
+                            name: newPerson.name,
+                        },
+                    ],
                 },
+            });
+            connect_1.prismaConnection.person.update({
+                where: {
+                    id: newPerson.id,
+                },
+                data: Object.assign(Object.assign({}, newPerson), { homes: [
+                        {
+                            id: newHome.id,
+                            address: newHome.address,
+                            rooms: newHome.rooms,
+                        },
+                    ] }),
             });
         }
     });

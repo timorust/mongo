@@ -9,14 +9,36 @@ export async function generateDataPersonAndHomes(interCount: number = 1) {
         name: faker.person.firstName(),
         bio: faker.person.bio(),
         age: minAge + i,
+        homes: [],
       },
     });
-    await prismaConnection.home.create({
+    const newHome = await prismaConnection.home.create({
       data: {
         address: faker.person.jobType() + " " + (i + 5),
         city: faker.person.jobArea(),
         rooms: 5,
-        personId: newPerson.id,
+        persons: [
+          {
+            id: newPerson.id,
+            name: newPerson.name,
+          },
+        ],
+      },
+    });
+
+    prismaConnection.person.update({
+      where: {
+        id: newPerson.id,
+      },
+      data: {
+        ...newPerson,
+        homes: [
+          {
+            id: newHome.id,
+            address: newHome.address,
+            rooms: newHome.rooms,
+          },
+        ],
       },
     });
   }
