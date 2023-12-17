@@ -13,7 +13,14 @@ export function HouseDetails() {
       <h2>House details</h2>
       <h1>city--{home_details_query.data?.city}</h1>
       <p>address--{home_details_query.data?.address}</p>
-      <p>personId--{home_details_query.data?.personId}</p>
+      <p>
+        {home_details_query.data?.persons.map((person, index) => (
+          <div key={index}>
+            {person.id}
+            <h1>{person.name}</h1>
+          </div>
+        ))}
+      </p>
       <h3>rooms--{home_details_query.data?.rooms}</h3>
     </main>
   );
