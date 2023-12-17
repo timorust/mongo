@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { trpc } from "../../trpc";
 
 export function HousePage() {
@@ -11,9 +12,11 @@ export function HousePage() {
       <h2>House page Work!</h2>
       {home_quey.data.map((home, index) => (
         <div key={index}>
-          <h2>{home.city}</h2>
-          <p>{home.address}</p>
-          <p>{home.rooms}</p>
+          <NavLink to={`/house/${home.id}`}>
+            <p>{home.city}</p>
+            <p>{home.address}</p>
+            <p>{home.rooms}</p>
+          </NavLink>
         </div>
       ))}
     </main>

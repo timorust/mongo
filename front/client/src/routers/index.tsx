@@ -6,6 +6,7 @@ import { AuthorDetailsPage } from "./AuthorPage/AuthorDetailsPage/AuthorDetailsP
 import { BooksPage } from "./BooksPage/BooksPage";
 import { BookDetailsPage } from "./BooksPage/BookDetailsPage/BookDetailsPage";
 import { HousePage } from "./HousePage/HousePage";
+import { HouseDetails } from "./HousePage/HouseDetails";
 
 export function RouterComponent() {
   return (
@@ -18,6 +19,7 @@ export function RouterComponent() {
         <Route path="/books" element={<BooksPage />} />
         <Route path="/books/:id" element={<BookDetailsPage />} />
         <Route path="/house" element={<HousePage />} />
+        <Route path="/house/:id" element={<HouseDetails />} />
       </Routes>
     </>
   );
