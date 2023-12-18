@@ -25,13 +25,11 @@ export async function generateDataPersonAndHomes(interCount: number = 1) {
         ],
       },
     });
-
-    prismaConnection.person.update({
+    const addNewPerson = await prismaConnection.person.update({
       where: {
         id: newPerson.id,
       },
       data: {
-        ...newPerson,
         homes: [
           {
             id: newHome.id,
@@ -41,5 +39,6 @@ export async function generateDataPersonAndHomes(interCount: number = 1) {
         ],
       },
     });
+    // console.log(addNewPerson);
   }
 }

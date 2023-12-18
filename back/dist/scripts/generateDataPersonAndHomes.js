@@ -37,18 +37,21 @@ function generateDataPersonAndHomes(interCount = 1) {
                     ],
                 },
             });
-            connect_1.prismaConnection.person.update({
+            const addNewPerson = yield connect_1.prismaConnection.person.update({
                 where: {
                     id: newPerson.id,
                 },
-                data: Object.assign(Object.assign({}, newPerson), { homes: [
+                data: {
+                    homes: [
                         {
                             id: newHome.id,
                             address: newHome.address,
                             rooms: newHome.rooms,
                         },
-                    ] }),
+                    ],
+                },
             });
+            // console.log(addNewPerson);
         }
     });
 }
