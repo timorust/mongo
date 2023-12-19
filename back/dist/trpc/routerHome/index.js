@@ -26,4 +26,38 @@ exports.routerHome = (0, trpc_1.router)({
         });
         return home !== null && home !== void 0 ? home : undefined;
     })),
+    addPerson: trpc_1.publicProcedure
+        .input(zod_1.z.object({
+        home_id: zod_1.z.string(),
+        name: zod_1.z.string(),
+        person_id: zod_1.z.string(),
+    }))
+        .mutation((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        const updateHome = yield connect_1.prismaConnection.home.update({
+            where: {
+                id: opts.input.home_id,
+            },
+            data: {
+                persons: {
+                    push: { id: opts.input.person_id, name: opts.input.name },
+                },
+            },
+        });
+        const updatePerson = yield connect_1.prismaConnection.person.update({
+            where: {
+                id: opts.input.person_id,
+            },
+            data: {
+                homes: {
+                    push: {
+                        id: opts.input.home_id,
+                        address: updateHome.address,
+                        rooms: updateHome.rooms,
+                        person: [],
+                    },
+                },
+            },
+        });
+        return { updatePerson, updateHome };
+    })),
 });
