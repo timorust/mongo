@@ -22,4 +22,14 @@ export const routerPerson = router({
     });
     return person ?? undefined;
   }),
+
+  personListNames: publicProcedure.query(async () => {
+    const personsName = await prismaConnection.person.findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+    return personsName;
+  }),
 });
