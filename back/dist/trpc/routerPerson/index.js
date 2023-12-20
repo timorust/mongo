@@ -32,4 +32,13 @@ exports.routerPerson = (0, trpc_1.router)({
         });
         return person !== null && person !== void 0 ? person : undefined;
     })),
+    personListNames: trpc_1.publicProcedure.query(() => __awaiter(void 0, void 0, void 0, function* () {
+        const personsName = yield connect_1.prismaConnection.person.findMany({
+            select: {
+                id: true,
+                name: true,
+            },
+        });
+        return personsName;
+    })),
 });
