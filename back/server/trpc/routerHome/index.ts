@@ -53,4 +53,25 @@ export const routerHome = router({
       });
       return { updatePerson, updateHome };
     }),
+
+  createHouse: publicProcedure
+    .input(
+      z.object({
+        address: z.string(),
+        city: z.string(),
+        rooms: z.number(),
+        persons: z.array(
+          z.object({
+            id: z.string(),
+            name: z.string(),
+          })
+        ),
+      })
+    )
+    .mutation(async (opts) => {
+      const newHouse = await prismaConnection.home.create({
+        data: opts.input,
+      });
+      return newHouse;
+    }),
 });

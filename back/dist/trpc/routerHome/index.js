@@ -60,4 +60,20 @@ exports.routerHome = (0, trpc_1.router)({
         });
         return { updatePerson, updateHome };
     })),
+    createHouse: trpc_1.publicProcedure
+        .input(zod_1.z.object({
+        address: zod_1.z.string(),
+        city: zod_1.z.string(),
+        rooms: zod_1.z.number(),
+        persons: zod_1.z.array(zod_1.z.object({
+            id: zod_1.z.string(),
+            name: zod_1.z.string(),
+        })),
+    }))
+        .mutation((opts) => __awaiter(void 0, void 0, void 0, function* () {
+        const newHouse = yield connect_1.prismaConnection.home.create({
+            data: opts.input,
+        });
+        return newHouse;
+    })),
 });
