@@ -25,6 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
@@ -53,6 +54,7 @@ app.use(express_1.default.static(path_1.default.join(__dirname, "../static-clien
 app.get("*", (req, res) => {
     res.sendFile(path_1.default.join(__dirname, "../static-client/index.html"));
 });
-app.listen(3300, () => {
-    console.log("listening on 3300!");
+app.listen((_b = (_a = process === null || process === void 0 ? void 0 : process.env) === null || _a === void 0 ? void 0 : _a.PORT) !== null && _b !== void 0 ? _b : 3300, () => {
+    var _a, _b;
+    console.log((_b = "listening on " + ((_a = process === null || process === void 0 ? void 0 : process.env) === null || _a === void 0 ? void 0 : _a.PORT)) !== null && _b !== void 0 ? _b : 3300);
 });

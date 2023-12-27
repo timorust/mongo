@@ -36,6 +36,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../static-client/index.html"));
 });
 
-app.listen(3300, () => {
-  console.log("listening on 3300!");
+app.listen(process?.env?.PORT ?? 3300, () => {
+  console.log("listening on " + process?.env?.PORT ?? 3300);
 });
