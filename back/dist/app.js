@@ -28,6 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 const trpc_1 = require("./trpc");
 const trpcExpress = __importStar(require("@trpc/server/adapters/express"));
 // import { generateDataPersonAndHomes } from "./scripts/generateDataPersonAndHomes";
@@ -42,10 +43,15 @@ app.use((0, cors_1.default)({
 app.use("/trpc", trpcExpress.createExpressMiddleware({
     router: trpc_1.appRouter,
 }));
-app.get("/", (req, res) => {
-    res.send({
-        message: "start mongo_pro process",
-    });
+// app.get("/", (req, res) => {
+//   res.send({
+//     message: "start mongo_pro process",
+//   });
+// });
+console.log(__dirname);
+app.use(express_1.default.static(path_1.default.join(__dirname, "../static-client")));
+app.get("*", (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, "../static-client/index.html"));
 });
 app.listen(3300, () => {
     console.log("listening on 3300!");

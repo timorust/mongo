@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-
+import path from "path";
 import { appRouter } from "./trpc";
 import * as trpcExpress from "@trpc/server/adapters/express";
 // import { generateDataPersonAndHomes } from "./scripts/generateDataPersonAndHomes";
@@ -23,10 +23,17 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send({
-    message: "start mongo_pro process",
-  });
+// app.get("/", (req, res) => {
+//   res.send({
+//     message: "start mongo_pro process",
+//   });
+// });
+
+console.log(__dirname);
+app.use(express.static(path.join(__dirname, "../static-client")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../static-client/index.html"));
 });
 
 app.listen(3300, () => {
