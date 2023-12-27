@@ -12,7 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mongo-fullstack.onrender.com"],
+    origin: [
+      "http://localhost:5173",
+      "https://mongo-fullstack.onrender.com",
+      "https://mongo-fullstack.onrender.com",
+    ],
   })
 );
 
